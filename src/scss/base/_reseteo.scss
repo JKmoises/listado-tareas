@@ -18,6 +18,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: v.$textColor;
+  min-height: 100vh;
 }
 
 a {
@@ -67,4 +68,5 @@ img {
 
 p {
   line-height: 1.6;
+  margin: 0;
 }
