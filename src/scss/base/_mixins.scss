@@ -1,0 +1,29 @@
+@mixin mobile {
+  @media (min-width: v.$telefono) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: v.$tablet) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: v.$desktop) {
+    @content;
+  }
+}
+
+@mixin btn($bgColor,$textColor){
+  padding: .5rem 1rem;
+  display: inline-block;
+  font-weight: 300;
+  text-align: center;
+  text-decoration: none;
+  color: $textColor;
+  background-color: $bgColor;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color .5s ease-in-out;
+}
