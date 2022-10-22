@@ -17,7 +17,7 @@ export const TaskList = () => {
       </article>
 
       <article className="task section box-shadow-1">
-        <p className="task-name">Terminar Libro</p>
+        <p className="task-name">Terminar Libro 30 largo</p>
 
         <span className="task-state" title="Terminar tarea">
           <i className="fas fa-user-clock"></i>
