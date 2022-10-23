@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 const initialForm = {
   id: null,
@@ -21,7 +22,11 @@ export const InputTask = ({ createTask }) => {
 
   const handleTask = (e) => {
     if (form.name === "") {
-      window.alert("Debes agregar una tarea");
+      Swal.fire({
+        title: "No has agregado una tarea",
+        text: "Debes agregar una tarea",
+        icon: "error"
+      });
       return;
     }
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { InputTask } from "./components/InputTask";
 import { TaskList } from "./components/TaskList";
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 const initialTasks = [];
 
@@ -17,8 +19,27 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    let newData = tasks.filter((task) => task.id !== id);
-    setTask(newData);
+    Swal.fire({
+      title: '¿Estas segur@ de eliminar esta tarea?',
+      text: "¡No podrás revertir esto!",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar Tarea',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let newData = tasks.filter((task) => task.id !== id);
+        setTask(newData);
+        Swal.fire(
+          'Tarea Eliminada',
+          'Tu tarea ha sido eliminada',
+          'success'
+        )
+      }
+    })
+    
   };
 
   const updateStateTask = (data) => {
