@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const Task = ({task}) => {
-  let {name,state} = task;
+export const Task = ({task,deleteTask}) => {
+  let {id,name,state} = task;
 
   return (
     <article className="task section box-shadow-1">
@@ -17,7 +17,7 @@ export const Task = ({task}) => {
 
       <div className="acciones">
         <button className="btn-editar">Editar</button>
-        <button className="btn-eliminar">Eliminar</button>
+        <button onClick={() => deleteTask(id)} className="btn-eliminar">Eliminar</button>
       </div>
     </article>
   );

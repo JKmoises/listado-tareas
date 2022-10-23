@@ -18,14 +18,16 @@ function App() {
   }
 
   const deleteTask = (id) => {
-
+    let newData = tasks.filter(task => task.id !== id);
+    
+    setTask(newData);
   }
 
   return (
     <div className="container section">
       <h1 className="section-title">Listado de tareas</h1>
       <InputTask createTask={createTask} updateTask={updateTask} />
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
