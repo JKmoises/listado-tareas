@@ -58,9 +58,16 @@
   
   .task-state{
     font-size: 2rem;
-    color: v.$yellowColor;
     cursor: pointer;
-     order: -1;
+    order: -1;
+
+    &.pending-state{
+      color: v.$yellowColor;
+    }
+
+    &.completed-state{
+      color: v.$firstColor;
+    }
 
     @include m.mobile {
       order: 0;
