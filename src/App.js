@@ -9,7 +9,7 @@ function App() {
   const [dataToEdit, setDataToEdit] = useState(null);
 
   const createTask = (data) => {
-    data.id = Date.now();
+    data.id = crypto.randomUUID();
     setTask([...tasks, data]);
   }
 
@@ -19,8 +19,9 @@ function App() {
 
   const deleteTask = (id) => {
     let newData = tasks.filter(task => task.id !== id);
-    
     setTask(newData);
+      
+    
   }
 
   return (

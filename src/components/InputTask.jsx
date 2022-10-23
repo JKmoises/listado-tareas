@@ -30,6 +30,13 @@ export const InputTask = ({ createTask }) => {
     refInput.current.focus();
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter') return;
+    
+    createTask(form);
+    resetTask();
+  };
+
   const resetTask = () => {
     setForm(initialForm);
   }
@@ -39,6 +46,7 @@ export const InputTask = ({ createTask }) => {
       <input
         ref={refInput}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         className="input-task"
         type="text"
         name="name"
