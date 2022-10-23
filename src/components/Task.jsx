@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
-export const Task = ({task,updateTask,deleteTask,updateStateTask}) => {
-  let {id,name,state} = task;
+export const Task = ({
+  task,
+  updateTask,
+  deleteTask,
+  updateStateTask,
+  updateNameTask,
+}) => {
+  let { id, name, state } = task;
+  const classStateTask = state ? "task-state completed-state" : "task-state pending-state";
+
 
   return (
     <article className="task section box-shadow-1">
-      <p className="task-name">{name}</p>
-
+      <input type="text" className="task-name" value={name} readOnly />
       <span
         onDoubleClick={() => updateStateTask(task)}
-        className={
-          state ? "task-state completed-state" : "task-state pending-state"
-        }
+        onKeyDown={() => updateNameTask()}
+        className={classStateTask}
         title="Terminar tarea al hacer doble click"
       >
         {state ? (
@@ -32,4 +38,4 @@ export const Task = ({task,updateTask,deleteTask,updateStateTask}) => {
       </div>
     </article>
   );
-}
+};

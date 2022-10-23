@@ -6,7 +6,6 @@ const initialTasks = [];
 
 function App() {
   const [tasks, setTask] = useState(initialTasks);
-  const [dataToEdit, setDataToEdit] = useState(null);
 
   const createTask = (data) => {
     data.id = crypto.randomUUID();
@@ -15,6 +14,11 @@ function App() {
 
   const updateTask = (data) => {
     console.log(data);
+  };
+
+  const deleteTask = (id) => {
+    let newData = tasks.filter((task) => task.id !== id);
+    setTask(newData);
   };
 
   const updateStateTask = (data) => {
@@ -29,14 +33,13 @@ function App() {
 
       return task;
     });
-    console.log(newData);
     setTask(newData);
   };
 
-  const deleteTask = (id) => {
-    let newData = tasks.filter((task) => task.id !== id);
-    setTask(newData);
-  };
+  const updateNameTask = (nameTask) => {
+    console.log(nameTask);
+  }
+
 
   return (
     <div className="container section">
@@ -47,6 +50,7 @@ function App() {
         updateTask={updateTask}
         deleteTask={deleteTask}
         updateStateTask={updateStateTask}
+        updateNameTask={ updateNameTask}
       />
     </div>
   );
