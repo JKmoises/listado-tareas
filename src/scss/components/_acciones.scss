@@ -1,0 +1,45 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.acciones{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  width: 100%;
+
+  @include m.mobile {
+    flex-direction: row;
+  }
+
+  @include m.tablet {
+    width: auto;
+  }
+   
+   
+  .btn-editar{
+    @include m.btn(v.$thirdColor,v.$whiteColor);
+    width: 100%;
+
+    @include m.tablet {
+     width: auto;
+    }
+
+    &:hover{
+      background-color: v.$thirdAlphaColor;
+    }
+    
+  }
+
+  .btn-eliminar{
+    @include m.btn(v.$secondColor,v.$whiteColor);
+    width: 100%;
+
+    @include m.tablet {
+     width: auto;
+    }
+
+     &:hover{
+      background-color: v.$secondAlphaColor;
+    }
+  }
+}

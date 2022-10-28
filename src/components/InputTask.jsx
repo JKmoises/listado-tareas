@@ -37,6 +37,16 @@ export const InputTask = ({ createTask }) => {
 
   const handleKeyDown = (e) => {
     if (e.key !== 'Enter') return;
+
+    if (form.name === "") {
+      e.preventDefault();
+       Swal.fire({
+         title: "No has agregado una tarea",
+         text: "Debes agregar una tarea",
+         icon: "error",
+       });
+      return;
+    }
     
     createTask(form);
     resetTask();

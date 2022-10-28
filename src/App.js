@@ -14,10 +14,6 @@ function App() {
     setTask([...tasks, data]);
   };
 
-  const updateTask = (data) => {
-    console.log(data);
-  };
-
   const deleteTask = (id) => {
     Swal.fire({
       title: '¿Estas segur@ de eliminar esta tarea?',
@@ -57,9 +53,10 @@ function App() {
     setTask(newData);
   };
 
-  const updateNameTask = (nameTask) => {
-    console.log(nameTask);
-  }
+  const updateTask = (e,data) => {
+    console.log(data);
+  };
+
 
 
   return (
@@ -71,7 +68,6 @@ function App() {
         updateTask={updateTask}
         deleteTask={deleteTask}
         updateStateTask={updateStateTask}
-        updateNameTask={ updateNameTask}
       />
     </div>
   );

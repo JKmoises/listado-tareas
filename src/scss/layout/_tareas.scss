@@ -1,0 +1,71 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.task-list{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1rem;
+
+  .task{
+    display: inherit;
+    gap: .5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: v.$whiteColor;
+
+    @include m.tablet {
+      flex-direction: row;
+      gap: 0;
+    }
+
+  }
+
+  .no-task{
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: v.$whiteColor;
+    border-right: thick solid v.$firstColor;
+    border-bottom: thick solid v.$firstColor;
+    user-select: none;
+
+    @include m.mobile {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .task-name{
+    font-weight: bold;
+    flex: 0 0 50%;
+    padding: .4rem;
+    padding-right: 0;
+    margin-right: .5rem;
+    border: none;
+    outline: none;
+    
+    &.edit-task{
+      border: thin solid v.$grayColor;
+      flex-grow: 1;
+    }
+  }
+  
+  .task-state{
+    font-size: 2rem;
+    cursor: pointer;
+    order: -1;
+
+    &.pending-state{
+      color: v.$yellowColor;
+    }
+
+    &.completed-state{
+      color: v.$firstColor;
+    }
+
+    @include m.mobile {
+      order: 0;
+    }
+  }
+}

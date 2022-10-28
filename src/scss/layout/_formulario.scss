@@ -1,0 +1,30 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.input-task-container{
+  display: flex;
+  flex-direction: column-reverse;
+  gap: .25rem;
+  justify-content: center;
+
+  @include m.mobile {
+    flex-direction: row;
+  }
+
+  .input-task{
+    flex: 1;
+    color: v.$blackColor;
+    font-size: 1.3rem;
+    outline: none;
+    border: thin solid v.$blackColor;
+    caret-color: v.$firstColor;
+  }
+
+  .btn-task{
+    @include m.btn(v.$firstColor,v.$whiteColor);
+    
+    &:hover{
+      background-color: v.$firstAlphaColor;
+    }
+  }
+}

@@ -5,7 +5,6 @@ export const TaskList = ({
   updateTask,
   deleteTask,
   updateStateTask,
-  updateNameTask,
 }) => {
   return (
     <section className="task-list">
@@ -16,13 +15,12 @@ export const TaskList = ({
             updateTask={updateTask}
             deleteTask={deleteTask}
             updateStateTask={updateStateTask}
-            updateNameTask={updateNameTask}
             key={task.id}
           />
         ))
       ) : (
-        <article className="no-task section box-shadow-1 text-center">
-          <p>Agrega tu tarea</p>
+        <article className="no-task section">
+          <p className="text-center text-shadow-1">Agrega una tarea</p>
         </article>
       )}
     </section>
