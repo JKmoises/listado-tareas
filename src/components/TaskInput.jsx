@@ -8,7 +8,7 @@ const initialForm = {
 };
 
 
-export const InputTask = ({ createTask }) => {
+export const TaskInput = ({ createTask }) => {
   const [form, setForm] = useState(initialForm);
 
   const refInput = useRef();
@@ -20,12 +20,26 @@ export const InputTask = ({ createTask }) => {
     });
   };
 
-  const handleTask = (e) => {
+  const handleTask = () => {
     if (form.name === "") {
       Swal.fire({
         title: "No has agregado una tarea",
         text: "Debes agregar una tarea",
-        icon: "error"
+        timer: 3000,
+        icon: "error",
+      });
+      return;
+    }
+
+    if (form.name.length > 25) {
+      Swal.fire({
+        title: "La descripción de la tarea es muy larga",
+        text: "La tarea debe tener hasta 25 caracteres",
+        icon: "info",
+        timer: 3000,
+        customClass: {
+          title: "fs-20-8",
+        },
       });
       return;
     }
@@ -38,23 +52,42 @@ export const InputTask = ({ createTask }) => {
   const handleKeyDown = (e) => {
     if (e.key !== 'Enter') return;
 
+    e.preventDefault();
     if (form.name === "") {
-      e.preventDefault();
        Swal.fire({
          title: "No has agregado una tarea",
          text: "Debes agregar una tarea",
          icon: "error",
+         timer: 3000
        });
       return;
     }
-    
+
+    if (form.name.length > 25) {
+      Swal.fire({
+        title: "La descripción de la tarea es muy larga",
+        text: "La tarea debe tener hasta 25 caracteres",
+        icon: "info",
+        timer: 3000,
+        customClass: {
+          title: "fs-21",
+        },
+      });
+      return;
+    }
+
     createTask(form);
     resetTask();
   };
 
+
   const resetTask = () => {
     setForm(initialForm);
   }
+
+  const taskValidations = () => {
+
+  };
 
   return (
     <div className="input-task-container">

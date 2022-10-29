@@ -1,65 +1,57 @@
-import { useRef } from "react";
+import { useState } from "react";
+import { TaskActions } from "./TaskActions";
+import { TaskUpdater } from "./TaskUpdater";
 
-export const Task = ({task,updateTask,deleteTask,updateStateTask}) => {
+export const Task = ({
+  task,
+  updateTask,
+  deleteTask,
+  updateStateTask,
+}) => {
+  const [dataToEdit, setDataToEdit] = useState(false);
+
   let { id, name, state } = task;
-  const classStateTask = state ? "task-state completed-state" : "task-state pending-state";
 
-  const refTaskName = useRef();
-  const refTaskState = useRef();
-  const refEditTaskBtn = useRef();
+  const classStateTask = state
+    ? "task-state completed-state"
+    : "task-state pending-state";
   
-  const updateNameTask = () => {
-    refTaskName.current.readOnly = false;
-    refTaskName.current.focus();
-    refTaskName.current.classList.add("edit-task");
-    refTaskState.current.classList.add("none");
-    refEditTaskBtn.current.classList.add("none");
-  };
-
- /*  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  }; */
+  const titleStateTask = state
+    ? "Dejar tarea pendiente al hacer doble click"
+    : "Terminar tarea al hacer doble click";
+  
 
   return (
     <article className="task section box-shadow-1">
-      <input
-        ref={refTaskName}
-        onKeyDown={(e) => updateTask(e, task)}
-        type="text"
-        className="task-name"
-        name="name"
-        value={name}
-        readOnly
-      />
-      <span
-        ref={refTaskState}
-        onDoubleClick={() => updateStateTask(task)}
-        className={classStateTask}
-        title="Terminar tarea al hacer doble click"
-      >
-        {state ? (
-          <i className="fas fa-user-check"></i>
-        ) : (
-          <i className="fas fa-user-clock"></i>
-        )}
-      </span>
+      {dataToEdit ? (
+        <TaskUpdater
+          task={task}
+          updateTask={updateTask}
+          setDataToEdit={setDataToEdit}
+        />
+      ) : (
+        <>
+          <p className="task-name">{name}</p>
 
-      <div className="acciones">
-        <button
-          ref={refEditTaskBtn}
-          onClick={updateNameTask}
-          className="btn-editar"
-        >
-          Editar
-        </button>
+          <span
+            onDoubleClick={() => updateStateTask(task)}
+            className={classStateTask}
+            title={titleStateTask}
+          >
+            {state ? (
+              <i className="fas fa-user-check"></i>
+            ) : (
+              <i className="fas fa-user-clock"></i>
+            )}
+          </span>
 
-        <button onClick={() => deleteTask(id)} className="btn-eliminar">
-          Eliminar
-        </button>
-      </div>
+          <TaskActions
+            deleteTask={deleteTask}
+            setDataToEdit={setDataToEdit}
+            taskId={id}
+          />
+        </>
+      )}
     </article>
   );
 };

@@ -68,4 +68,28 @@
       order: 0;
     }
   }
+
+  .input-updater{
+    flex: 1;
+    color: v.$blackColor;
+    font-size: 1.3rem;
+    margin-right: 1rem;
+    outline: none;
+    border: thin solid v.$grayColor;
+    border-radius: .3rem;
+    caret-color: v.$grayColor;
+  }
+
+  .btn-actualizar{
+    @include m.btn(v.$linkColor,v.$whiteColor);
+    width: 100%;
+
+    @include m.tablet {
+     width: auto;
+    }
+
+    &:hover{
+      background-color: lighten(v.$linkColor,5%);
+    }
+  }
 }

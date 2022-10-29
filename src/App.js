@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputTask } from "./components/InputTask";
+import { TaskInput } from "./components/TaskInput";
 import { TaskList } from "./components/TaskList";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -27,7 +27,9 @@ function App() {
     }).then((result) => {
       if (result.isConfirmed) {
         let newData = tasks.filter((task) => task.id !== id);
+
         setTask(newData);
+
         Swal.fire(
           'Tarea Eliminada',
           'Tu tarea ha sido eliminada',
@@ -53,8 +55,10 @@ function App() {
     setTask(newData);
   };
 
-  const updateTask = (e,data) => {
-    console.log(data);
+  const updateTask = (data) => {
+    let newData = tasks.map(task => task.id === data.id ? data : task);
+    
+    setTask(newData);
   };
 
 
@@ -62,7 +66,7 @@ function App() {
   return (
     <div className="container section">
       <h1 className="section-title">Listado de tareas</h1>
-      <InputTask createTask={createTask} />
+      <TaskInput createTask={createTask} />
       <TaskList
         tasks={tasks}
         updateTask={updateTask}
