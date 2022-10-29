@@ -7,14 +7,14 @@ import 'sweetalert2/src/sweetalert2.scss';
 const initialTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function App() {
-  const [tasks, setTask] = useState(initialTasks);
+  const [tasks, setTasks] = useState(initialTasks);
 
   const createTask = (data) => {
     data.id = crypto.randomUUID();
     
     localStorage.setItem("tasks", JSON.stringify([...tasks, data]));
 
-    setTask([...tasks, data]);
+    setTasks([...tasks, data]);
   };
 
   const deleteTask = (id) => {
@@ -32,7 +32,7 @@ function App() {
         let newData = tasks.filter((task) => task.id !== id);
 
         localStorage.setItem("tasks", JSON.stringify(newData));
-        setTask(newData);
+        setTasks(newData);
 
         Swal.fire(
           'Tarea Eliminada',
@@ -58,14 +58,14 @@ function App() {
     });
     localStorage.setItem("tasks", JSON.stringify(newData));
 
-    setTask(newData);
+    setTasks(newData);
   };
 
   const updateTask = (data) => {
     let newData = tasks.map(task => task.id === data.id ? data : task);
 
     localStorage.setItem("tasks", JSON.stringify(newData));
-    setTask(newData);
+    setTasks(newData);
   };
 
 

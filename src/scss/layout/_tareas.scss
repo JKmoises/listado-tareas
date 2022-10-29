@@ -73,11 +73,18 @@
     flex: 1;
     color: v.$blackColor;
     font-size: 1.3rem;
-    margin-right: 1rem;
+    margin-right: 0;
     outline: none;
     border: thin solid v.$grayColor;
     border-radius: .3rem;
     caret-color: v.$grayColor;
+    width: 100%;
+
+    @include m.tablet {
+      width: auto;
+      margin-right: 1rem;
+      
+    }
   }
 
   .btn-actualizar{
