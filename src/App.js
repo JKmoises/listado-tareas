@@ -4,13 +4,16 @@ import { TaskList } from "./components/TaskList";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
 
-const initialTasks = [];
+const initialTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function App() {
   const [tasks, setTask] = useState(initialTasks);
 
   const createTask = (data) => {
     data.id = crypto.randomUUID();
+    
+    localStorage.setItem("tasks", JSON.stringify([...tasks, data]));
+
     setTask([...tasks, data]);
   };
 
@@ -28,6 +31,7 @@ function App() {
       if (result.isConfirmed) {
         let newData = tasks.filter((task) => task.id !== id);
 
+        localStorage.setItem("tasks", JSON.stringify(newData));
         setTask(newData);
 
         Swal.fire(
@@ -52,12 +56,15 @@ function App() {
 
       return task;
     });
+    localStorage.setItem("tasks", JSON.stringify(newData));
+
     setTask(newData);
   };
 
   const updateTask = (data) => {
     let newData = tasks.map(task => task.id === data.id ? data : task);
-    
+
+    localStorage.setItem("tasks", JSON.stringify(newData));
     setTask(newData);
   };
 
