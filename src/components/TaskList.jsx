@@ -2,14 +2,18 @@ import { Task } from "./Task";
 
 export const TaskList = ({
   tasks,
+  filteredTasks,
   updateTask,
   deleteTask,
   updateStateTask,
 }) => {
+  
+  const tasksToRender = filteredTasks.length ? filteredTasks : tasks;
+
   return (
     <section className="task-list">
-      {tasks.length > 0 ? (
-        tasks.map((task) => (
+      {tasksToRender.length > 0 ? (
+        tasksToRender.map((task) => (
           <Task
             task={task}
             updateTask={updateTask}

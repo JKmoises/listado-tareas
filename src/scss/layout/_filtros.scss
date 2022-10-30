@@ -1,0 +1,57 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.filtros{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  gap: .5rem;
+  margin-top: 1rem;
+  padding: .7rem;
+  background-color: v.$thirdColor;
+  border-radius: 1rem;
+
+  @include m.tablet {
+    flex-direction: row;
+    gap: 2rem;
+    border-radius: 4rem 1rem;
+  }
+
+}
+
+.filtro{
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  width: 50%;
+  border-bottom: thin solid v.$whiteColor;
+  padding-bottom: .5rem;
+  
+  @include m.tablet {
+    width: auto;
+    border: none;
+    padding-bottom: 0;
+  }
+  
+  label{
+    flex: 0 0 8rem;
+    color: v.$whiteColor;
+    font-weight: 700;
+    text-transform: uppercase;
+    
+    @include m.tablet {
+      flex: 0;
+    }
+  }
+  
+  input[type="radio"]{
+    margin: 0;
+    accent-color: v.$textColor;
+  }
+  
+  label,
+  input[type="radio"]{
+    cursor: pointer;
+  }
+}
