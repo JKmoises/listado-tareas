@@ -55,14 +55,29 @@
     font-size: 2rem;
     cursor: pointer;
     order: -1;
+    transition: all .5s ease;
 
+    &:hover{
+      transform: translateY(-5px);
+    }
+
+    
     &.pending-state{
       color: v.$yellowColor;
-    }
 
+      &:hover{
+        color: lighten(v.$yellowColor,10%);
+      }
+    }
+    
     &.completed-state{
       color: v.$firstColor;
+
+      &:hover{
+        color: lighten(v.$firstColor,10%);
+      }
     }
+
 
     @include m.mobile {
       order: 0;
