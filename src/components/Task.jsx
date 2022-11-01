@@ -7,6 +7,7 @@ export const Task = ({
   updateTask,
   deleteTask,
   updateStateTask,
+  filteredTasks,
 }) => {
   const [dataToEdit, setDataToEdit] = useState(false);
 
@@ -15,11 +16,10 @@ export const Task = ({
   const classStateTask = state
     ? "task-state completed-state"
     : "task-state pending-state";
-  
+
   const titleStateTask = state
     ? "Dejar tarea pendiente al hacer doble click"
     : "Terminar tarea al hacer doble click";
-  
 
   return (
     <article className="task section box-shadow-1">
@@ -49,6 +49,7 @@ export const Task = ({
             deleteTask={deleteTask}
             setDataToEdit={setDataToEdit}
             taskId={id}
+            filteredTasks={filteredTasks}
           />
         </>
       )}

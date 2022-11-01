@@ -28,6 +28,10 @@
       background-color: v.$thirdAlphaColor;
     }
     
+    &:disabled{
+      background-color: v.$thirdAlphaColor;
+    }
+    
   }
 
   .btn-eliminar{
@@ -38,8 +42,13 @@
      width: auto;
     }
 
-     &:hover{
+    &:hover{
       background-color: v.$secondAlphaColor;
     }
+
+    &:disabled{
+      background-color: v.$secondAlphaColor;
+    }
+   
   }
 }

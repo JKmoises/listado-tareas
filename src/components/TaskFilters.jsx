@@ -1,9 +1,10 @@
 import React from "react";
 
-export const TaskFilters = ({ filterTasks }) => {
-  const handleChange = (e) => {
-    filterTasks(e.target.value);
-  };
+export const TaskFilters = ({ filterTasks, tasks }) => {
+  const allPending = tasks.every(task => task.state === false);
+  const allCompleted = tasks.every(task => task.state === true);
+
+  const handleChange = (e) => filterTasks(e.target);
 
   return (
     <section className="filtros box-shadow-1">
@@ -27,6 +28,7 @@ export const TaskFilters = ({ filterTasks }) => {
           id="pending-tasks"
           name="statetask"
           value="0"
+          disabled={allCompleted}
         />
       </div>
 
@@ -38,6 +40,7 @@ export const TaskFilters = ({ filterTasks }) => {
           id="completed-tasks"
           name="statetask"
           value="1"
+          disabled={allPending}
         />
       </div>
     </section>

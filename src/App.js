@@ -37,7 +37,12 @@ function App() {
         localStorage.setItem("tasks", JSON.stringify(newData));
         setTasks(newData);
 
-        Swal.fire("Tarea Eliminada", "Tu tarea ha sido eliminada", "success");
+        Swal.fire({
+          title: "Tarea Eliminada",
+          text: "Tu tarea ha sido eliminada",
+          icon: "success",
+          timer: 3000,
+        });
       }
     });
   };
@@ -68,10 +73,11 @@ function App() {
 
   const filterTasks = (filterTask) => {
     let filter,
-      stateTask = Boolean(parseInt(filterTask));
+      stateTask = Boolean(parseInt(filterTask.value));
 
-    if (filterTask !== "") {
+    if (filterTask.value !== "") {
       filter = tasks.filter((task) => task.state === stateTask);
+      
     } else {
       filter = [];
     }
@@ -85,7 +91,7 @@ function App() {
       <h1 className="section-title">Listado de tareas</h1>
       <TaskInput createTask={createTask} />
 
-      <TaskFilters filterTasks={filterTasks} />
+      <TaskFilters filterTasks={filterTasks} tasks={tasks} />
 
       <TaskList
         tasks={tasks}

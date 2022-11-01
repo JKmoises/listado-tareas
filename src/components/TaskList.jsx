@@ -19,6 +19,7 @@ export const TaskList = ({
             updateTask={updateTask}
             deleteTask={deleteTask}
             updateStateTask={updateStateTask}
+            filteredTasks={filteredTasks}
             key={task.id}
           />
         ))
